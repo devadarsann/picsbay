@@ -1,7 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:picsbay/SearchResult.dart';
 
-BuildContext _applicationContext;
+//BuildContext _applicationContext;
 
 void main() => runApp(new MyApp());
 
@@ -9,7 +10,7 @@ class MyApp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    _applicationContext = context;
+//    _applicationContext = context;
     return new MaterialApp(title: "Picsbay",
         home: new HomePage());
   }
@@ -36,7 +37,7 @@ class HomePageState extends State<HomePage> {
         title: new Text("Picsbay")),
         body: new Container(
           decoration: new BoxDecoration(
-            image: new DecorationImage(image: new NetworkImage("https://cdn.pixabay.com/photo/2013/10/15/09/12/flower-195893_150.jpg"),
+            image: new DecorationImage(image: new NetworkImage("https://pixabay.com/get/ea37b40c29f3033ed1584d05fb1d4097e374e7d41cac104497f1c870a1e9b1ba_1280.png"),
               fit: BoxFit.cover,
             ),
           ),
@@ -49,8 +50,8 @@ class HomePageState extends State<HomePage> {
                     padding:const EdgeInsets.symmetric(horizontal: 4.0,vertical: 4.0),
                     margin: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 8.0),
                     decoration: new BoxDecoration(
-                        color: Colors.white70,
-                        borderRadius: new BorderRadius.circular(10.0),
+                        color: Colors.white,
+                        borderRadius: new BorderRadius.circular(20.0),
                         boxShadow: [new BoxShadow(
                             color: Colors.black,
                             blurRadius: 10.0
@@ -78,8 +79,6 @@ class HomePageState extends State<HomePage> {
   }
 
   void _handleSubmitted(String value) {
-    Scaffold.of(context).showSnackBar(
-      new SnackBar(content: new Text(value)),
-    );
+    Navigator.push(context, new MaterialPageRoute(builder: (context)=> new SearchScreen(searchKeyword: value,)));
   }
 }
